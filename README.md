@@ -1,3 +1,3 @@
-### SIMPLE sHELL PROJECT ###
-#goal: thompson-like functional shell
+# SIMPLE sHELL PROJECT #
+### GOAL: thompson-like functional shell ###
 
