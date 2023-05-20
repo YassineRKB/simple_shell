@@ -14,9 +14,7 @@
 
 extern char **environ;
 
-int _putchar(char c);
-int sh_getInput(char **input);
-int sh_runCmd(char *av);
-char *sh_getEnv(char *s);
+void sh_active(void);
+void sh_passive(void);
 
 #endif
