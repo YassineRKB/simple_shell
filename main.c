@@ -7,7 +7,7 @@ int main(void)
 {
 	int mode = isatty(STDIN_FILENO);
 
-	if (status != 1)
+	if (mode != 1)
 		sh_passive();
 	else
 		sh_active();
