@@ -22,6 +22,8 @@ char *read_line(void);
 char **split_lines(char *line, char *delim);
 int execute_args(char **args);
 int make_child(char **args);
+char *sh_getPath(void);
+int sh_isvalid(char *path, char **filename)
 
 int builtin_exit(char **args);
 #endif
