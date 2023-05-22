@@ -52,7 +52,7 @@ char *read_stream(void)
 			free(line);
 			exit(EXIT_SUCCESS);
 		}
-		if (c == '\n' || c == ';' || c == '&')
+		else if (c == '\n' || c == ';' || c == '&')
 		{
 			line[i] = '\0';
 			return (line);

@@ -26,5 +26,8 @@ char *sh_getPath(void);
 int sh_isvalid(char *path, char **filename);
 char *read_stream(void);
 
+int builtin_cd(char **args);
 int builtin_exit(char **args);
+int builtin_env(char **args);
+int builtin_help(char **args);
 #endif

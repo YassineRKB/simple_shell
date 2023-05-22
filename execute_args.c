@@ -9,10 +9,16 @@ int execute_args(char **args)
 {
 	unsigned long int i = 0, cmdlen = 0;
 	char *builtin_funcs_list[] = {
+		"cd",
+		"env",
+		"help",
 		"exit"
 	};
 
 	int (*builtin_funcs[])(char **) = {
+		&builtin_cd,
+		&builtin_env,
+		&builtin_help,
 		&builtin_exit
 	};
 
