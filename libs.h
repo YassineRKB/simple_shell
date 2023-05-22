@@ -13,11 +13,14 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <string.h>
+#include <sys/wait.h>
 
 extern char **environ;
 
 void sh_active(void);
 void sh_passive(void);
+void sh_file(char *file);
+
 char *read_line(void);
 char **split_lines(char *line, char *delim);
 int execute_args(char **args);
