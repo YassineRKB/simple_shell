@@ -14,11 +14,13 @@ char *read_line(void)
 	{
 		if (feof(stdin))
 		{
+			free(line);
 			write(1, "$\n", 2);
 			exit(EXIT_SUCCESS);
 		}
 		else
 		{
+			free(line);
 			perror("Error");
 			write(1, "$\n", 2);
 			exit(EXIT_FAILURE);
