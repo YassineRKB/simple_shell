@@ -15,24 +15,27 @@ int make_child(char **args)
 	if (isvalid == 1)
 	{
 		args[0] = filename;
+		pid = fork();
+		if (pid == 0)
+		{
+			status = execve(args[0], args, environ);
+			if (status == -1)
+				perror("Pid Error");
+			exit(EXIT_FAILURE);
+		}
+		else if (pid < 0)
+		{
+			perror("cant make child");
+			exit(EXIT_FAILURE);
+		}
+		else
+			wait(NULL);
+		free(filename);
 	}
 	else
-		args[0] = "/usr/bin/ls";
-	pid = fork();
-	if (pid == 0)
 	{
-		status = execve(args[0], args, environ);
-		if (status == -1)
-			perror("Pid Error");
-		exit(EXIT_FAILURE);
+		perror("command does not exist");
 	}
-	else if (pid < 0)
-	{
-		perror("cant make child");
-		exit(EXIT_FAILURE);
-	}
-	else
-		wait(NULL);
 	return (-1);
 }
 
