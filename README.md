@@ -2,4 +2,4 @@
 ### GOAL: thompson-like functional shell ###
 ### EXE: ./hsh ###
 ### MODES: Interactive + Non-Interactive ###
-### BUILT-in: exit, ###
+### BUILT-in: cd, env, help, exit ###
