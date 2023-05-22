@@ -47,6 +47,11 @@ char *read_stream(void)
 	while (1)
 	{
 		c = getchar();
+		if (c == EOF)
+		{
+			free(line);
+			exit(EXIT_SUCCESS);
+		}
 		if (c == '\n' || c == ';' || c == '&')
 		{
 			line[i] = '\0';
