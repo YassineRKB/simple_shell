@@ -2,7 +2,7 @@
 	A thompsone shell,  that can be run both in interactive mode and non interiactive mode. 
 
 ### -> DataFlow Diagram:
-![[./images/graph.png]]
+![[graph.png]]
 #### -> Project RoadMap:
 	> Implement Interactive Mode: print '$ ' on each terminal line. 
 	> Read 1024 buffer of input at time and spit back whole input.
