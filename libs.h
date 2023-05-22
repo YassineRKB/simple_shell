@@ -28,6 +28,7 @@ int make_child(char **args);
 char *sh_getPath(void);
 int sh_isvalid(char *path, char **filename);
 char *read_stream(void);
+char **split_lines_file(char *line);
 
 int builtin_cd(char **args);
 int builtin_exit(char **args);

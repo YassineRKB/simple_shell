@@ -47,3 +47,50 @@ void sh_passive(void)
 			exit(status);
 	}
 }
+
+/**
+ * sh_file - non-interactive mode handle
+ * @filename: target file containing commands.
+ * Return: void
+*/
+
+void sh_file(char *filename)
+{
+	char *line, **lines;
+	char **args;
+	int status = 1, len = 0;
+	int fileDesc, checkRead;
+
+
+	fileDesc = open(filename, O_RDONLY);
+	if (fileDesc == -1)
+		printf("Error Reading file %s", filename), exit(EXIT_FAILURE);
+
+	while (status == 1)
+	{
+		line = malloc(sizeof(char *) * BUFFSIZE);
+		if (!line)
+			printf("Error malloc"), close(fileDesc), exit(EXIT_FAILURE);
+		checkRead = read(fileDesc, line, 1024);
+		if (checkRead == -1)
+			printf("Error Reading %s", filename), close(fileDesc), exit(EXIT_FAILURE);
+		if (checkRead > 0)
+		{
+			lines = split_lines_file(line);
+			while (lines[len])
+			{
+				args = split_lines(lines[len], _DELIM);
+				status = execute_args(args);
+				len++;
+			}
+			free(line);
+			free(args);
+		}
+		else
+			status = 0;
+		if (status <= 0)
+			close(fileDesc), exit(status);
+	}
+
+}
+
