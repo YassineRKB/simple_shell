@@ -1,2 +1,3 @@
-/bin/ls -l
-echo $PATH
+/bin/ls
+echo "qwerty"
+# env
