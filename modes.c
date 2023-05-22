@@ -9,7 +9,6 @@ void sh_active(void)
 	char **args;
 	int status = -1;
 
-	
 	do {
 		line = read_line();
 		args = split_lines(line, _DELIM);
