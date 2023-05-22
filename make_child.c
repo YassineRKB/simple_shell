@@ -8,9 +8,16 @@ int make_child(char **args)
 {
 	pid_t pid;
 	int status, isvalid = 0;
-	char *filename = "/usr/bin/ls";
+	char *path = sh_getPath();
+	char *filename = args[0];
 
-	args[0] = filename;
+	isvalid = sh_isvalid(path, &filename);
+	if (isvalid == 1)
+	{
+		args[0] = filename;
+	}
+	else
+		args[0] = "/usr/bin/ls";
 	pid = fork();
 	if (pid == 0)
 	{
