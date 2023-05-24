@@ -12,7 +12,7 @@ void sh_err(char *msg)
 
 	len = _strlen(sepa) + _strlen(msg);
 	fullmsg = malloc(sizeof(char *) * len);
-	if(!fullmsg)
+	if (!fullmsg)
 		perror("malloc");
 	fullmsg[0] = '\0';
 	_strcat(fullmsg, sepa);
