@@ -15,7 +15,7 @@ char **split_lines(char *line, char *delim)
 	if (!tokens)
 	{
 		free(tokens);
-		printf("Tokens Error");
+		perror("Tokens Error");
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(line, delim);
@@ -28,10 +28,10 @@ char **split_lines(char *line, char *delim)
 		{
 			oldsize = sizeof(bufsize);
 			bufsize += bufsize;
-			tokens = _realloc(tokens, oldsize, sizeof(char *) * bufsize);
+			tokens = _realloc(tokens, oldsize, sizeof(char) * bufsize);
 			if (!tokens)
 			{
-				printf("Error");
+				perror("Error");
 				exit(EXIT_FAILURE);
 			}
 		}
@@ -72,7 +72,7 @@ char **split_lines_file(char *line)
 			tokens = _realloc(tokens, oldsize, sizeof(char *) * bufsize);
 			if (!tokens)
 			{
-				printf("Error");
+				perror("Error");
 				exit(EXIT_FAILURE);
 			}
 		}

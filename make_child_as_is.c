@@ -35,5 +35,5 @@ int make_child_as_is(char **args)
 		sh_err("./hsh : No such file or directory\n\0");
 		return (0);
 	}
-	return (-102);
+	return (-1);
 }
