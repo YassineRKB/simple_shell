@@ -4,7 +4,7 @@
 #define BUFFSIZE 1024
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 98
-#define _DELIM ";\t\r\n\a\" "
+#define _DELIM "\t\r\n\a\" "
 #define SHNAME "./hsh"
 
 #include <stdio.h>

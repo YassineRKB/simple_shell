@@ -27,7 +27,7 @@ int execute_args(char **args)
 		if (_strcmp(args[0], builtin_funcs_list[i]) == 0)
 			return ((*builtin_funcs[i])(args));
 
-	/* flag = make_child(args); */
+	flag = make_child_as_is(args);
 	if (flag == -102)
 		return (-1);
 	return (make_child(args));

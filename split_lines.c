@@ -28,7 +28,7 @@ char **split_lines(char *line, char *delim)
 		{
 			oldsize = sizeof(bufsize);
 			bufsize += bufsize;
-			tokens = _realloc(tokens, oldsize, sizeof(char) * bufsize);
+			tokens = _realloc(tokens, oldsize, sizeof(char *) * bufsize);
 			if (!tokens)
 			{
 				perror("Error");
