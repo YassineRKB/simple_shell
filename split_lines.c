@@ -2,6 +2,7 @@
 /**
  * split_lines - tokenizer function
  * @line: string to tokenize
+ * @delim: delimeters
  * Return: pointer to tokens.
 */
 char **split_lines(char *line, char *delim)

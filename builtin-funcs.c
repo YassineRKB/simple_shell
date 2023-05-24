@@ -1,33 +1,5 @@
 #include "libs.h"
 /**
- * _setenv - builtin setenv equivalent of putenv
- * @args: pointer to the arguments
- * Return: -1 on success 0 on fail
-*/
-void _setenv(char *var, char *value)
-{
-	int i;
-	char *varenv, *nameenv, **env = environ;
-
-	for (i = 0; env[i]; i++)
-	{
-		varenv = _strdup(env[i]);
-		nameenv = strtok(varenv, "=");
-		if (_strcmp(nameenv, var) == 0)
-		{
-			free(env[i]);
-			env[i] = infocpy(nameenv, value);
-			free(varenv);
-			return;
-		}
-		free(varenv);
-	}
-	env = _realloc(env, i, sizeof(char *) * (i + 2));
-	env[i] = infocpy(var, value);
-	env[i + 1] = NULL;
-}
-
-/**
  * builtin_cd - built in cd func
  * @args: target dir
  * Return: -1 on success 0 on fail.
@@ -62,7 +34,7 @@ int builtin_cd(char **args)
 			{
 				if (chdir(homeDir) != 0)
 					perror("Error");
-				_setenv("OLDPWD", currDir);
+				/* _setenv("OLDPWD", currDir); */
 			}
 		}
 	}

@@ -40,7 +40,8 @@ int make_child(char **args)
 }
 
 /**
- * sh_getPath - function to get full path filename of program
+ * sh_getEnv - function to get full path filename of program
+ * @envVar: env var name
  * Return: string
 */
 char *sh_getEnv(char *envVar)
@@ -88,7 +89,6 @@ int sh_isvalid(char *path, char **filename)
 		_strcat(fullpath, "/");
 		_strcat(fullpath, *filename);
 		_strcat(fullpath, "\0");
-		printf("fullpath: %s.\n", fullpath);
 		/* snprintf(fullpath, sizeof(fullpath), "%s/%s", token, *filename); */
 		if (access(fullpath, F_OK) != -1)
 		{

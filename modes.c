@@ -57,7 +57,7 @@ void sh_passive(void)
 
 /**
  * sh_file - non-interactive mode handle
- * @filename: target file containing commands.
+ * @argv: pointer to arguments.
  * Return: void
 */
 
