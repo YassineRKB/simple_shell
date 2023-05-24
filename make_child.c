@@ -8,7 +8,7 @@ int make_child(char **args)
 {
 	pid_t pid;
 	int status, isvalid = 0;
-	char *path = sh_getPath();
+	char *path = sh_getEnv("PATH=");
 	char *filename = args[0];
 
 	isvalid = sh_isvalid(path, &filename);
@@ -34,7 +34,7 @@ int make_child(char **args)
 	}
 	else
 	{
-		perror("command does not exist");
+		dprintf(STDOUT_FILENO, "%s command does not exist\n", filename);
 	}
 	return (-1);
 }
@@ -43,16 +43,17 @@ int make_child(char **args)
  * sh_getPath - function to get full path filename of program
  * Return: string
 */
-char *sh_getPath(void)
+char *sh_getEnv(char *envVar)
 {
 	char *path = NULL;
 	char **env = environ;
+	size_t len = _strlen(envVar);
 
 	for (; *env != NULL; env++)
 	{
-		if (strncmp(*env, "PATH=", 5) == 0)
+		if (_strncmp(*env, envVar, len) == 0)
 		{
-			path = *env + 5;
+			path = *env + len;
 			break;
 		}
 	}
@@ -71,20 +72,33 @@ char *sh_getPath(void)
 int sh_isvalid(char *path, char **filename)
 {
 	int isvalid = 0;
-	char *pathcopie = strdup(path);
+	char *pathcopie = _strdup(path);
 	char *token = strtok(pathcopie, ":");
-	char fullpath[BUFFSIZE] = "";
+	char *fullpath;
+	size_t len;
+	/* char fullpath[BUFFSIZE] = ""; */
 
 	do {
-		snprintf(fullpath, sizeof(fullpath), "%s/%s", token, *filename);
+		len = _strlen(token) + _strlen("/") + _strlen(*filename) + 1;
+		fullpath = malloc(sizeof(char) * len);
+		if (!fullpath)
+			perror("make child=> sh_isvalid : malloc");
+		fullpath[0] = '\0';
+		_strcat(fullpath, token);
+		_strcat(fullpath, "/");
+		_strcat(fullpath, *filename);
+		_strcat(fullpath, "\0");
+		printf("fullpath: %s.\n", fullpath);
+		/* snprintf(fullpath, sizeof(fullpath), "%s/%s", token, *filename); */
 		if (access(fullpath, F_OK) != -1)
 		{
-			*filename = strdup(fullpath);
+			*filename = _strdup(fullpath);
 			isvalid = 1;
 			break;
 		}
 		token = strtok(NULL, ":");
 	} while (token);
+	free(fullpath);
 	free(pathcopie);
 	return (isvalid);
 }

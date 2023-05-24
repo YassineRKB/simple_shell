@@ -9,7 +9,7 @@ char *read_line(void)
 	int status;
 	int len = 0;
 
-	status = getline(&line, &len, stdin);
+	status = sh_getline(&line, &len, stdin);
 	if (status == -1)
 	{
 		if (feof(stdin))
@@ -28,6 +28,7 @@ char *read_line(void)
 	}
 	return (line);
 }
+
 /**
  * read_stream - func to read line from stream.
  * Return: pointer to line.
@@ -36,7 +37,7 @@ char *read_line(void)
 char *read_stream(void)
 {
 	int c, i = 0;
-	int bufSIZE = BUFFSIZE;
+	int bufSIZE = BUFFSIZE, oldsize;
 	char *line = malloc(sizeof(char) * bufSIZE);
 
 	if (!line)
@@ -52,7 +53,7 @@ char *read_stream(void)
 			free(line);
 			exit(EXIT_SUCCESS);
 		}
-		else if (c == '\n' || c == ';' || c == '&')
+		else if (c == '\n')
 		{
 			line[i] = '\0';
 			return (line);
@@ -62,7 +63,8 @@ char *read_stream(void)
 		i++;
 		if (i >= bufSIZE)
 		{
-			bufSIZE += bufSIZE, line = realloc(line, bufSIZE);
+			oldsize = bufSIZE;
+			bufSIZE += bufSIZE, line = _realloc(line, oldsize, bufSIZE);
 			if (!line)
 			{
 				perror("Error"), exit(EXIT_FAILURE);
