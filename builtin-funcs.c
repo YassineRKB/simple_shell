@@ -78,14 +78,14 @@ int builtin_help(char **args)
 	(void)(**args);
 
 	/* cmdlen = sizeof(builtin_funcs_list) / sizeof(char *); */
-	write(1, st1,_strlen(st1));
-	write(1, st2,_strlen(st2));
-	write(1, st3,_strlen(st3));
-	write(1, st4,_strlen(st4));
-	write(1, st5,_strlen(st4));
-	write(1, st6,_strlen(st4));
-	write(1, st7,_strlen(st4));
-	write(1, st8,_strlen(st4));
+	write(1, st1, _strlen(st1));
+	write(1, st2, _strlen(st2));
+	write(1, st3, _strlen(st3));
+	write(1, st4, _strlen(st4));
+	write(1, st5, _strlen(st4));
+	write(1, st6, _strlen(st4));
+	write(1, st7, _strlen(st4));
+	write(1, st8, _strlen(st4));
 	return (-1);
 }
 

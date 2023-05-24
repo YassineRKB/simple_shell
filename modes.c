@@ -74,10 +74,10 @@ void sh_file(char **argv)
 	{
 		line = malloc(sizeof(char *) * BUFFSIZE);
 		if (!line)
-			perro("Error malloc"), close(fileDesc), exit(EXIT_FAILURE);
+			perror("Error malloc"), close(fileDesc), exit(EXIT_FAILURE);
 		checkRead = read(fileDesc, line, 1024);
 		if (checkRead == -1)
-			perro("Error Reading"), close(fileDesc), exit(EXIT_FAILURE);
+			perror("Error Reading"), close(fileDesc), exit(EXIT_FAILURE);
 		if (checkRead > 0)
 		{
 			lines = split_lines_file(line);
