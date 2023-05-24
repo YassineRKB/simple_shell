@@ -9,7 +9,7 @@
 int main(int argc, char **argv)
 {
 	int mode = isatty(STDIN_FILENO);
-	
+
 	if (argv[0])
 	{
 		#undef SHNAME
