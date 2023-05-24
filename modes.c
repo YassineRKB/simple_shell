@@ -25,6 +25,7 @@ void sh_active(void)
 			exit(status);
 	} while (status == -1);
 }
+
 /**
  * sh_passive - non-interactive mode handle
  * Return: void
@@ -40,6 +41,12 @@ void sh_passive(void)
 	{
 		line = read_stream();
 		args = split_lines(line, _DELIM);
+		if (!args[0])
+		{
+			free(line);
+			free(args);
+			continue;
+		}
 		status = execute_args(args);
 		free(line);
 		free(args);
@@ -54,13 +61,10 @@ void sh_passive(void)
  * Return: void
 */
 
-void sh_file(char *filename)
+void sh_file(char **argv)
 {
-	char *line, **lines;
-	char **args;
-	int status = 1, len = 0;
-	int fileDesc, checkRead;
-
+	char *line, **lines, **args, *filename = argv[1];
+	int status = 1, len = 0, fileDesc, checkRead;
 
 	fileDesc = open(filename, O_RDONLY);
 	if (fileDesc == -1)
@@ -91,6 +95,4 @@ void sh_file(char *filename)
 		if (status <= 0)
 			close(fileDesc), exit(status);
 	}
-
 }
-

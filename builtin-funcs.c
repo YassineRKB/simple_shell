@@ -1,20 +1,85 @@
 #include "libs.h"
+char *infocpy(char *name, char *value)
+{
+	size_t nlen, vlen, len;
+	char *new;
+
+	nlen = _strlen(name);
+	vlen = _strlen(value);
+	len = nlen + vlen + 2;
+	new = malloc(sizeof(char) * (len));
+	_strcpy(new, name);
+	_strcat(new, "=");
+	_strcat(new, value);
+	_strcat(new, "\0");
+
+	return (new);
+}
+/**
+ * _setenv - builtin setenv equivalent of putenv
+ * @args: pointer to the arguments
+ * Return: -1 on success 0 on fail
+*/
+void _setenv(char *var, char *value)
+{
+	int i;
+	char *varenv, *nameenv, **env = environ;
+
+	for (i = 0; env[i]; i++)
+	{
+		varenv = _strdup(env[i]);
+		nameenv = strtok(varenv, "=");
+		if (_strcmp(nameenv, var) == 0)
+		{
+			free(env[i]);
+			env[i] = infocpy(nameenv, value);
+			free(varenv);
+			return;
+		}
+		free(varenv);
+	}
+	env = _realloc(env, i, sizeof(char *) * (i + 2));
+	env[i] = infocpy(var, value);
+	env[i + 1] = NULL;
+}
+
 /**
  * builtin_cd - built in cd func
  * @args: target dir
  * Return: -1 on success 0 on fail.
 */
 int builtin_cd(char **args)
-{
+{	
+	const char *oldDir, *homeDir;
+	char currDir[BUFFSIZE];
+
+	homeDir = sh_getEnv("HOME=");
+	getcwd(currDir,sizeof(currDir));
 	if (!args[1])
 	{
-		perror("Error");
-		return (0);
+		printf("Usage: cd [director]\n");
 	}
 	else
-	{
-		if (chdir(args[1]) != 0)
-			perror("Error");
+	{	if (_strcmp(args[1], "--") != 0 && _strcmp(args[1], "-") != 0)
+		{
+			if (chdir(args[1]) != 0)
+				perror("Error");
+		}
+		else
+		{
+			if (_strcmp(args[1], "-") == 0)
+			{
+				oldDir = sh_getEnv("OLDPWD=");
+				if (chdir(oldDir) != 0)
+					perror("Error");
+			}
+			if (_strcmp(args[1], "--") == 0)
+			{
+				if (chdir(homeDir) != 0)
+					perror("Error");
+				_setenv("OLDPWD", currDir);
+			}
+		}
 	}
 	return (-1);
 }
@@ -31,7 +96,7 @@ int builtin_env(char **args)
 
 	while (environ[i])
 	{
-		write(STDOUT_FILENO, environ[i], strlen(environ[i]));
+		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
 		write(STDOUT_FILENO, "\n", 1);
 		i++;
 	}
@@ -73,7 +138,7 @@ int builtin_help(char **args)
 int builtin_exit(char **args)
 {
 	if (args[1])
-		return (atoi(args[1]));
+		return (_atoi(args[1]));
 	else
 		return (0);
 }

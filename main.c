@@ -1,4 +1,5 @@
 #include "libs.h"
+
 /**
  * main - simple shell entry point
  * @argc: arguments counter
@@ -15,7 +16,7 @@ int main(int argc, char **argv)
 	else
 	{
 		if (argc == 2)
-			sh_file(argv[1]);
+			sh_file(argv);
 		else
 			sh_active();
 	}

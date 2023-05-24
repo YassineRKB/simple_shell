@@ -4,9 +4,9 @@
  * @line: string to tokenize
  * Return: pointer to tokens.
 */
-char **split_lines(char *line,char *delim)
+char **split_lines(char *line, char *delim)
 {
-	int bufsize = BUFFSIZE;
+	int bufsize = BUFFSIZE, oldsize;
 	int i = 0;
 	char **tokens = malloc(sizeof(char *) * bufsize);
 	char *token;
@@ -25,8 +25,9 @@ char **split_lines(char *line,char *delim)
 		i++;
 		if (i >= bufsize)
 		{
+			oldsize = sizeof(bufsize);
 			bufsize += bufsize;
-			tokens = realloc(tokens, sizeof(char *) * bufsize);
+			tokens = _realloc(tokens, oldsize, sizeof(char *) * bufsize);
 			if (!tokens)
 			{
 				printf("Error");
@@ -39,7 +40,6 @@ char **split_lines(char *line,char *delim)
 	return (tokens);
 }
 
-
 /**
  * split_lines_file - tokenizer function
  * @line: string to tokenize
@@ -47,7 +47,7 @@ char **split_lines(char *line,char *delim)
 */
 char **split_lines_file(char *line)
 {
-	int bufsize = BUFFSIZE;
+	int bufsize = BUFFSIZE, oldsize;
 	int i = 0;
 	char **tokens = malloc(sizeof(char *) * bufsize);
 	char *token;
@@ -66,8 +66,9 @@ char **split_lines_file(char *line)
 		i++;
 		if (i >= bufsize)
 		{
+			oldsize = sizeof(bufsize);
 			bufsize += bufsize;
-			tokens = realloc(tokens, sizeof(char *) * bufsize);
+			tokens = _realloc(tokens, oldsize, sizeof(char *) * bufsize);
 			if (!tokens)
 			{
 				printf("Error");
@@ -79,4 +80,3 @@ char **split_lines_file(char *line)
 	tokens[i] = NULL;
 	return (tokens);
 }
-
