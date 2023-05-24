@@ -56,6 +56,6 @@ int builtin_setenv(char **var);
 int builtin_unsetenv(char **var);
 int builtin_help(char **args);
 
-void sh_err(char *msg)
+void sh_err(char *msg);
 
 #endif
