@@ -14,19 +14,21 @@ int execute_args(char **args)
 		"help",
 		"exit"
 	};
-
 	int (*builtin_funcs[])(char **) = {
 		&builtin_cd,
 		&builtin_env,
 		&builtin_help,
 		&builtin_exit
 	};
+	int flag = 0;
 
 	cmdlen = sizeof(builtin_funcs_list) / sizeof(char *);
-
 	for (; i < cmdlen; i++)
 		if (_strcmp(args[0], builtin_funcs_list[i]) == 0)
 			return ((*builtin_funcs[i])(args));
 
+	flag = make_child_as_is(args);
+	if (flag == -102)
+		return (-1);
 	return (make_child(args));
 }

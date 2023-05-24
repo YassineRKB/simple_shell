@@ -28,6 +28,7 @@ char **split_lines_file(char *line);
 char **clean_lines_comments(char *line);
 int execute_args(char **args);
 int make_child(char **args);
+int make_child_as_is(char **args);
 
 int sh_getline(char **lineptr, int *n, FILE *stream);
 char *sh_getEnv(char *envVar);
