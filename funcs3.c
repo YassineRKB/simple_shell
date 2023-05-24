@@ -34,16 +34,16 @@ int _strncmp(char *s1, char *s2, int n)
 {
 	int r, i = 0;
 
-	for (; i < n; i++) 
+	for (; i < n; i++)
 	{
 		if (s1[i] != s2[i])
 		{
 			r = s1[i] - s2[i];
 			return (r);
 		}
-		
+
 		if (s1[i] == '\0')
 			return (0);
 	}
-    return (0);
+	return (0);
 }

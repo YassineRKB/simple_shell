@@ -1,20 +1,4 @@
 #include "libs.h"
-char *infocpy(char *name, char *value)
-{
-	size_t nlen, vlen, len;
-	char *new;
-
-	nlen = _strlen(name);
-	vlen = _strlen(value);
-	len = nlen + vlen + 2;
-	new = malloc(sizeof(char) * (len));
-	_strcpy(new, name);
-	_strcat(new, "=");
-	_strcat(new, value);
-	_strcat(new, "\0");
-
-	return (new);
-}
 /**
  * _setenv - builtin setenv equivalent of putenv
  * @args: pointer to the arguments
@@ -49,18 +33,19 @@ void _setenv(char *var, char *value)
  * Return: -1 on success 0 on fail.
 */
 int builtin_cd(char **args)
-{	
+{
 	const char *oldDir, *homeDir;
 	char currDir[BUFFSIZE];
 
 	homeDir = sh_getEnv("HOME=");
-	getcwd(currDir,sizeof(currDir));
+	getcwd(currDir, sizeof(currDir));
 	if (!args[1])
 	{
 		printf("Usage: cd [director]\n");
 	}
 	else
-	{	if (_strcmp(args[1], "--") != 0 && _strcmp(args[1], "-") != 0)
+	{
+		if (_strcmp(args[1], "--") != 0 && _strcmp(args[1], "-") != 0)
 		{
 			if (chdir(args[1]) != 0)
 				perror("Error");
