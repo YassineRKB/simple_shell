@@ -29,11 +29,4 @@ int execute_args(char **args)
 
 	flag = make_child_as_is(args);
 	return (flag);
-	/* if (flag == -102)
-		return (-1);
-	else
-	{
-		flag = make_child(args);
-		return (flag);
-	} */
 }
