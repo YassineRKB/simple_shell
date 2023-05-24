@@ -27,6 +27,9 @@ int execute_args(char **args)
 		if (_strcmp(args[0], builtin_funcs_list[i]) == 0)
 			return ((*builtin_funcs[i])(args));
 
-	flag = make_child_as_is(args);
+	if (_strstr(args[0], "/"))
+		flag = make_child_as_is(args);
+	else
+		flag = make_child(args);
 	return (flag);
 }

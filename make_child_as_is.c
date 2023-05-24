@@ -7,7 +7,7 @@
 int make_child_as_is(char **args)
 {
 	pid_t pid;
-	int status, state = 0;
+	int status, state = -1;
 	char *filename = args[0];
 
 	args[0] = filename;
@@ -21,8 +21,6 @@ int make_child_as_is(char **args)
 	else
 	{
 		waitpid(pid, &status, 0);
-		make_child(args);
-		state = -1;
 	}
 
 	return (state);

@@ -29,8 +29,7 @@ int make_child(char **args)
 	}
 	else
 	{
-		if (!_strstr(args[0], "/"))
-			sh_err("./hsh: No such file or directory\n\0");
+		sh_err("./hsh: No such file or directory\n\0");
 	}
 	return (-1);
 }
