@@ -68,16 +68,16 @@ void sh_file(char **argv)
 
 	fileDesc = open(filename, O_RDONLY);
 	if (fileDesc == -1)
-		printf("Error Reading file %s", filename), exit(EXIT_FAILURE);
+		perror("Error Reading file"), exit(EXIT_FAILURE);
 
 	while (status == 1)
 	{
 		line = malloc(sizeof(char *) * BUFFSIZE);
 		if (!line)
-			printf("Error malloc"), close(fileDesc), exit(EXIT_FAILURE);
+			perro("Error malloc"), close(fileDesc), exit(EXIT_FAILURE);
 		checkRead = read(fileDesc, line, 1024);
 		if (checkRead == -1)
-			printf("Error Reading %s", filename), close(fileDesc), exit(EXIT_FAILURE);
+			perro("Error Reading"), close(fileDesc), exit(EXIT_FAILURE);
 		if (checkRead > 0)
 		{
 			lines = split_lines_file(line);

@@ -13,7 +13,7 @@ int builtin_cd(char **args)
 	getcwd(currDir, sizeof(currDir));
 	if (!args[1])
 	{
-		printf("Usage: cd [director]\n");
+		perror("Usage: cd [director]\n");
 	}
 	else
 	{
@@ -67,23 +67,25 @@ int builtin_env(char **args)
 */
 int builtin_help(char **args)
 {
-	unsigned long int i = 0, cmdlen = 0;
-	char *builtin_funcs_list[] = {
-		"cd",
-		"env",
-		"help",
-		"exit"
-	};
+	char *st1 = "help: simple shell \n";
+	char *st2 = "Type a command then its arguments: for more info\n";
+	char *st3 = "man [command].\n";
+	char *st4 = "Built-in commands:\n";
+	char *st5 = " cd\n";
+	char *st6 = " env\n";
+	char *st7 = " help";
+	char *st8 = " exit\n";
 	(void)(**args);
 
-	cmdlen = sizeof(builtin_funcs_list) / sizeof(char *);
-
-	printf("help: simple shell \n");
-	printf("Type a command then its arguments, if in doubt access man page:\n");
-	printf("man [command].\n");
-	printf("Built-in commands\n");
-	for (; i < cmdlen; i++)
-		printf(" %s\n", builtin_funcs_list[i]);
+	/* cmdlen = sizeof(builtin_funcs_list) / sizeof(char *); */
+	write(1, st1,_strlen(st1));
+	write(1, st2,_strlen(st2));
+	write(1, st3,_strlen(st3));
+	write(1, st4,_strlen(st4));
+	write(1, st5,_strlen(st4));
+	write(1, st6,_strlen(st4));
+	write(1, st7,_strlen(st4));
+	write(1, st8,_strlen(st4));
 	return (-1);
 }
 

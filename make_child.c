@@ -34,7 +34,8 @@ int make_child(char **args)
 	}
 	else
 	{
-		dprintf(STDOUT_FILENO, "%s command does not exist\n", filename);
+		write(2, filename, _strlen(filename));
+		perror(" command does not exist\n");
 	}
 	return (-1);
 }
