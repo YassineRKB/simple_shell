@@ -33,7 +33,7 @@ int make_child(char **args)
 		free(filename);
 	}
 	else
-		sh_err(": No such file or directory");
+		sh_err("./hsh: No such file or directory\n\0");
 	return (-1);
 }
 

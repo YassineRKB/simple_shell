@@ -8,13 +8,15 @@
 void sh_err(char *msg)
 {
 	size_t len;
-	char *filename = SHNAME, *fullmsg, sepa = ": ";
+	char *fullmsg, *sepa = ": ";
 
-	len = _strlen(filename) + _strlen(sepa) + _strlen(msg) + 2;
+	len = _strlen(sepa) + _strlen(msg);
+	fullmsg = malloc(sizeof(char *) * len);
+	if(!fullmsg)
+		perror("malloc");
 	fullmsg[0] = '\0';
-	_strcat(fullmsg, filename);
 	_strcat(fullmsg, sepa);
 	_strcat(fullmsg, msg);
-	_strcat(fullmsg, "\n\0");
 	write(2, msg, len);
+	free(fullmsg);
 }

@@ -32,8 +32,7 @@ int make_child_as_is(char **args)
 	}
 	else
 	{
-		write(2, SHNAME, _strlen(SHNAME));
-		perror(" command does not exist\n");
+		sh_err("./hsh : No such file or directory\n\0");
 		return (0);
 	}
 	return (-102);
