@@ -28,7 +28,12 @@ int execute_args(char **args)
 			return ((*builtin_funcs[i])(args));
 
 	flag = make_child_as_is(args);
-	if (flag == -102)
+	return (flag);
+	/* if (flag == -102)
 		return (-1);
-	return (make_child(args));
+	else
+	{
+		flag = make_child(args);
+		return (flag);
+	} */
 }

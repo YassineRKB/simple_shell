@@ -21,6 +21,8 @@ int make_child_as_is(char **args)
 	else
 	{
 		waitpid(pid, &status, 0);
+		make_child(args);
+		state = -1;
 	}
 
 	return (state);

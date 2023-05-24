@@ -42,6 +42,7 @@ int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
 int _strncmp(char *s1, char *s2, int n);
 char *_strncpy(char *dest, char *src, int n);
+char *_strstr(char *haystack, char *needle);
 int _atoi(char *s);
 char *_memcpy(char *dest, char *src, unsigned int n);
 void *_realloc(void *ptr, int old_size, int new_size);
