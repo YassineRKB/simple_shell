@@ -9,6 +9,11 @@
 int main(int argc, char **argv)
 {
 	int mode = isatty(STDIN_FILENO);
+	if (argv[0])
+	{
+		#undef SHNAME
+		#define SHNAME argv[0]
+	}
 	(void)argv;
 
 	if (mode != 1)

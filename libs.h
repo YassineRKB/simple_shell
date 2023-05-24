@@ -5,6 +5,7 @@
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 98
 #define _DELIM "\t\r\n\a\" "
+#define SHNAME "./hsh"
 
 #include <stdio.h>
 #include <unistd.h>
@@ -54,5 +55,7 @@ int builtin_env(char **args);
 int builtin_setenv(char **var);
 int builtin_unsetenv(char **var);
 int builtin_help(char **args);
+
+void sh_err(char *msg)
 
 #endif

@@ -33,10 +33,7 @@ int make_child(char **args)
 		free(filename);
 	}
 	else
-	{
-		write(2, filename, _strlen(filename));
-		perror(" command does not exist\n");
-	}
+		sh_err(": No such file or directory");
 	return (-1);
 }
 
