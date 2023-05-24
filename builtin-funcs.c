@@ -97,6 +97,7 @@ int builtin_help(char **args)
 int builtin_exit(char **args)
 {
 	int code;
+
 	if (args[1])
 	{
 		code = _atoi(args[1]);

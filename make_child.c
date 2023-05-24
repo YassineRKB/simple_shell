@@ -21,12 +21,7 @@ int make_child(char **args)
 			execve(args[0], args, environ);
 			exit(EXIT_SUCCESS);
 		}
-		/* else if (pid < 0)
-		{
-			perror("cant make child");
-			exit(EXIT_FAILURE);
-		} */
-		else	
+		else
 		{
 			waitpid(pid, &status, 0);
 		}
