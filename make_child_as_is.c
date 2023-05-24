@@ -7,33 +7,21 @@
 int make_child_as_is(char **args)
 {
 	pid_t pid;
-	int status, isvalid = 0;
+	int status, state = 0;
 	char *filename = args[0];
 
-	isvalid = 1;
-	if (isvalid == 1)
+	args[0] = filename;
+	pid = fork();
+	if (pid == 0)
 	{
-		args[0] = filename;
-		pid = fork();
-		if (pid == 0)
-		{
-			status = execve(args[0], args, environ);
-			if (status == -1)
-				return (0);
-			exit(EXIT_FAILURE);
-		}
-		else if (pid < 0)
-		{
-			perror("cant make child");
-			exit(EXIT_FAILURE);
-		}
-		else
-			wait(NULL);
+		execve(args[0], args, environ);
+		state = -102;
+		exit(EXIT_SUCCESS);
 	}
 	else
 	{
-		sh_err("./hsh : No such file or directory\n\0");
-		return (0);
+		waitpid(pid, &status, 0);
 	}
-	return (-102);
+
+	return (state);
 }

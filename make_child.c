@@ -18,18 +18,18 @@ int make_child(char **args)
 		pid = fork();
 		if (pid == 0)
 		{
-			status = execve(args[0], args, environ);
-			if (status == -1)
-				perror("Pid Error");
-			exit(EXIT_FAILURE);
+			execve(args[0], args, environ);
+			exit(EXIT_SUCCESS);
 		}
-		else if (pid < 0)
+		/* else if (pid < 0)
 		{
 			perror("cant make child");
 			exit(EXIT_FAILURE);
+		} */
+		else	
+		{
+			waitpid(pid, &status, 0);
 		}
-		else
-			wait(NULL);
 		free(filename);
 	}
 	else

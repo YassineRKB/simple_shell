@@ -96,8 +96,13 @@ int builtin_help(char **args)
 */
 int builtin_exit(char **args)
 {
+	int code;
 	if (args[1])
-		return (_atoi(args[1]));
+	{
+		code = _atoi(args[1]);
+		exit(code);
+		return (1);
+	}
 	else
 		return (0);
 }
