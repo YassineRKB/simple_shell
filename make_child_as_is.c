@@ -37,7 +37,7 @@ int make_child_as_is(char **args)
  * sh_isvalid_as_is - a function to check if raw input
  * is a valid path.
  * @filename: input to be checked
- * Return: 0 on fail and 1 on success 
+ * Return: 0 on fail and 1 on success
 */
 int sh_isvalid_as_is(char *filename)
 {
