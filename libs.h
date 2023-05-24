@@ -34,6 +34,7 @@ int make_child_as_is(char **args);
 int sh_getline(char **lineptr, int *n, FILE *stream);
 char *sh_getEnv(char *envVar);
 int sh_isvalid(char *path, char **filename);
+int sh_isvalid_as_is(char *filename);
 
 char *_strcpy(char *dest, char *src);
 char *_strdup(char *s);
