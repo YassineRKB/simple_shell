@@ -38,17 +38,16 @@ int sh_isvalid_as_is(char *filename);
 
 char *_strcpy(char *dest, char *src);
 char *_strdup(char *s);
-char *_strcat(char *dest, char *src);
+char *_strcat(char *dest, const char *src);
 int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
-int _strncmp(char *s1, char *s2, int n);
+int _strncmp(const char *s1, const char *s2, int n);
 char *_strncpy(char *dest, char *src, int n);
 char *_strstr(char *haystack, char *needle);
 int _atoi(char *s);
 char *_memcpy(char *dest, char *src, unsigned int n);
 void *_realloc(void *ptr, int old_size, int new_size);
-char *sh_putenv(char *string);
-void _setenv(char *var, char *value);
+int _setenv(const char *var, const char *value);
 char *copy_info(char *name, char *value);
 
 int builtin_cd(char **args);

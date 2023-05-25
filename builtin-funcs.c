@@ -21,6 +21,7 @@ int builtin_cd(char **args)
 		{
 			if (chdir(args[1]) != 0)
 				perror("Error");
+			_setenv("OLDPWD", currDir);
 		}
 		else
 		{
@@ -34,7 +35,6 @@ int builtin_cd(char **args)
 			{
 				if (chdir(homeDir) != 0)
 					perror("Error");
-				/* _setenv("OLDPWD", currDir); */
 			}
 		}
 	}

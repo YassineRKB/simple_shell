@@ -30,7 +30,7 @@ char *_strncpy(char *dest, char *src, int n)
 * @n: n first char to compare
 * Return: int
 **/
-int _strncmp(char *s1, char *s2, int n)
+int _strncmp(const char *s1, const char *s2, int n)
 {
 	int r, i = 0;
 

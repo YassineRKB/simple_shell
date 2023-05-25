@@ -79,24 +79,12 @@ void *_realloc(void *ptr, int old_size, int new_size)
 }
 
 /**
- * sh_putenv - function to insert the envstring
- * @string: target string to be inserted
- * Return: -1 on success, 0 on fail
-*/
-char *sh_putenv(char *string)
-{
-	char *newString = _strdup(string);
-
-	return (newString);
-}
-
-/**
 * _strcat - function
 * @src: source string
 * @dest: destination string
 * Return: pointer
 **/
-char *_strcat(char *dest, char *src)
+char *_strcat(char *dest, const char *src)
 {
 	int len = 0;
 	int i;
