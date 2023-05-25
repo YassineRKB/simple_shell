@@ -6,7 +6,7 @@
 */
 int builtin_cd(char **args)
 {
-	const char *oldDir, *homeDir;
+	char *oldDir, *homeDir;
 	char currDir[BUFFSIZE];
 
 	homeDir = sh_getEnv("HOME=");
@@ -106,4 +106,18 @@ int builtin_exit(char **args)
 	}
 	else
 		return (0);
+}
+
+/**
+ * builtin_setenv - builtin shell set env
+ * @args: arguments
+ * Return: -1 on success, 0 on fail
+*/
+int builtin_setenv(char **args)
+{
+	if (args[1] && args[2])
+		_setenv(args[1], args[2]);
+	else
+		sh_err("setenv VARIABLE VALUE\n\0");
+	return (-1);
 }

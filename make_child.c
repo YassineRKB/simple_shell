@@ -54,7 +54,9 @@ char *sh_getEnv(char *envVar)
 		}
 	}
 	if (path == NULL)
+	{
 		perror("PATH variable not found.\n"), exit(EXIT_FAILURE);
+	}
 	return (path);
 }
 

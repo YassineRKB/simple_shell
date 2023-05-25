@@ -20,32 +20,32 @@ int _setenv(const char *envar, const char *enval)
 			if (!nvar)
 			{
 				sh_err("Failed to allocate memory\n\0");
-				return (-1);
+				return (0);
 			}
 			nvar[0] = '\0', _strcat(nvar, envar), _strcat(nvar, "=");
 			_strcat(nvar, enval), *env = nvar;
-			return (0);
+			return (-1);
 		}
 	}
 	nvar = malloc(sizeof(char) * rlen);
 	if (!nvar)
 	{
 		sh_err("Failed to allocate memory\n\0");
-		return (-1);
+		return (0);
 	}
 	nvar[0] = '\0', _strcat(nvar, envar), _strcat(nvar, "=");
 	_strcat(nvar, enval);
-	while (*env != NULL && envlen < envlen + 2)
+	while (*env != NULL && *(env + 1) != NULL)
 		envlen++, env++;
 	nenviron = malloc(sizeof(char *) * (envlen + 2));
 	if (!nenviron)
 	{
 		sh_err("Failed to allocate memory\n\0"), free(nvar);
-		return (-1);
+		return (0);
 	}
 	for (envlen = 0, env = environ; *env; envlen++, env++)
 		nenviron[envlen] = *env;
-	nenviron[envlen] = nvar;
-	nenviron[envlen + 1] = NULL, environ = nenviron;
-	return (0);
+	nenviron[envlen] = nvar, nenviron[envlen + 1] = NULL;
+	(envlen > 0) ? free(environ), environ = nenviron : (environ = nenviron);
+	return (-1);
 }
